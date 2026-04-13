@@ -1,0 +1,10 @@
+{
+    "name": "InfectionDeathPenalty",
+    "version_number": "1.0.0",
+    "website_url": "https://github.com/Heaveness/GTFriendlyO",
+    "description": "Inflicts players with infection when downed.",
+    "dependencies": 
+    [
+        "BepInEx-BepInExPack_GTFO-3.2.2"
+    ]
+}
