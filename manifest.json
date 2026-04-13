@@ -1,7 +1,7 @@
 {
     "name": "InfectionDeathPenalty",
     "version_number": "1.0.0",
-    "website_url": "https://github.com/Heaveness/GTFriendlyO",
+    "website_url": "https://github.com/Heaveness/InfectionDeathPenalty",
     "description": "Inflicts players with infection when downed.",
     "dependencies": 
     [
