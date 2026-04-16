@@ -11,12 +11,7 @@ internal static class Patch
     public static void OnPlayerDown(Dam_PlayerDamageBase __instance)
     {
         PlayerAgent player = __instance.Owner;
-        if (player == null) return;
-
-        if (!player.Alive) return;
-
-        if (player.Owner.IsBot) return;
-        if (!player.IsLocallyOwned) return;
+        if (player == null || !player.Alive || player.Owner.IsBot || !player.IsLocallyOwned) return;
 
         float currentInf = __instance.Infection;
         float maxAllowed = 0.85f;
@@ -25,14 +20,23 @@ internal static class Patch
 
         float amountToAdd = Plugin.InfectionPercentage.Value / 100f;
 
-        float newInfection = Math.Min(currentInf + amountToAdd, maxAllowed);
-
-        pInfection infectionData = new()
+        pInfection addInfectionData = new()
         {
-            amount = newInfection,
-            mode = pInfectionMode.Set
+            amount = amountToAdd,
+            mode = pInfectionMode.Add
         };
 
-        __instance.ModifyInfection(infectionData, true, true);
+        __instance.ModifyInfection(addInfectionData, true, true);
+
+        if (__instance.Infection > maxAllowed)
+        {
+            pInfection capData = new()
+            {
+                amount = maxAllowed,
+                mode = pInfectionMode.Set
+            };
+        
+            __instance.ModifyInfection(capData, false, false);
+        }
     }
 }

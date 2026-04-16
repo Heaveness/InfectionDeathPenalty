@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<Profile>InfectionDeathPenalty</Profile>
+
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<DebugType>None</DebugType>
+		<AssemblyName>$(SolutionName)</AssemblyName>
+		<RootNamespace>$(SolutionName)</RootNamespace>
+		<BepInEx>E:\Program Files (x86)\Thunderstore Mod Manager\DataFolder\GTFO\profiles\InfectionDeathPenalty\BepInEx</BepInEx>
+		<BuildDirectory>$(BepInEx)\plugins\$(SolutionName)\</BuildDirectory>
+		<OutputPath>$(BuildDirectory)</OutputPath>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	</PropertyGroup>
+	<Target Name="PostBuild" BeforeTargets="PostBuildEvent">
+		<Delete Files="$(OutputPath)$(AssemblyName).deps.json" />
+	</Target>
+	<ItemGroup>
+		<Reference Include="$(BepInEx)\core\0Harmony.dll" Private="false" />
+		<Reference Include="$(BepInEx)\core\BepInEx.Core.dll" Private="false" />
+		<Reference Include="$(BepInEx)\core\BepInEx.Unity.IL2CPP.dll" Private="false" />
+		<Reference Include="$(BepInEx)\core\Il2CppInterop.Common.dll" Private="false" />
+		<Reference Include="$(BepInEx)\core\Il2CppInterop.Runtime.dll" Private="false" />
+		<Reference Include="$(BepInEx)\plugins\GTFO-API.dll" Private="false" />
+		<Reference Include="$(BepInEx)\interop\*.dll" Private="false" />
+		<Reference Remove="$(BepInEx)\interop\netstandard.dll" />
+	</ItemGroup>
+</Project>
